@@ -1,0 +1,24 @@
+from my_project import analyze_text_sentiment, analyze_text_entities, analyze_text_syntax, classify_text
+import pandas as pd 
+import numpy as np 
+
+
+res = analyze_text_sentiment("")
+res = pd.DataFrame([res])
+
+for line in open("tweets.txt"):
+    try:    
+        my_dict2 = analyze_text_sentiment(line)
+        my_dict2 = pd.DataFrame([my_dict2])
+        res = res.append(my_dict2)
+        step = step + 1
+    except Exception as e:
+        #print("error happend")
+        pass
+    continue
+
+print("end")
+
+res.head(10)
+
+res.to_csv("intern_results.csv")
